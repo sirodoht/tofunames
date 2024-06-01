@@ -1,0 +1,35 @@
+/* root */
+html, body { margin: 0; }
+body { font-family: monospace; line-height: 1.3; }
+
+/* general */
+a { color: black; }
+
+/* nav */
+nav { display: grid; gap: 0; grid-template-columns: auto 1fr auto; outline: 1px solid black; }
+nav h1 { margin: 0; text-align: center; outline: 1px solid black; }
+nav h1 a {
+    font-size: 20px;
+    font-weight: 400;
+    display: block;
+    padding: 16px 24px;
+}
+nav a { text-decoration: none; }
+nav a:hover { text-decoration: underline; }
+#controls { outline: 1px solid black; display: flex; }
+.controls-item { display: flex; }
+.controls-item a { padding: 20px; }
+
+/* main */
+main { display: grid; grid-template-columns: auto auto auto; }
+.domain {
+    grid-column: 1 / 4;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    border-bottom: 1px solid black;
+}
+.domain div:not(:last-child) { border-right: 1px solid black; }
+.domain div {
+    border-right: 1px solid black;
+    padding: 8px;
+}

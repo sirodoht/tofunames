@@ -33,5 +33,29 @@ class UserAdmin(DjUserAdmin):
             },
         ),
     )
+    readonly_fields = ("created_at",)
     search_fields = ("username", "email")
+    ordering = ["-id"]
+
+
+@admin.register(models.Contact)
+class ContactAdmin(admin.ModelAdmin):
+    list_display = (
+        "id",
+        "first_name",
+        "last_name",
+        "api_id",
+        "created_at",
+    )
+    ordering = ["-id"]
+
+
+@admin.register(models.Domain)
+class DomainAdmin(admin.ModelAdmin):
+    list_display = (
+        "id",
+        "domain_name",
+        "contact",
+        "created_at",
+    )
     ordering = ["-id"]

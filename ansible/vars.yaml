@@ -1,0 +1,5 @@
+---
+debug: "{{ lookup('env', 'DEBUG') }}"
+secret_key: "{{ lookup('env', 'SECRET_KEY') }}"
+centralnic_username: "{{ lookup('env', 'CENTRALNIC_USERNAME') }}"
+centralnic_password: "{{ lookup('env', 'CENTRALNIC_PASSWORD') }}"

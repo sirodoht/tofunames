@@ -10,22 +10,20 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
+import os
 from pathlib import Path
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+SECRET_KEY = os.environ.get("SECRET_KEY", "django-insecure-g@u7bxl#5_f75kzj872*-f+4")
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
+DEBUG = True if os.environ.get("DEBUG") == "1" else False
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-g=td2z%gg933-!$gth4)*gaoremj%5lv6@u7bxl#5_f75kzf+4"
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "127.0.0.1",
+    "localhost",
+    "tofunames.com",
+]
 
 
 # Application definition
@@ -124,3 +122,10 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+# CentralNic
+# https://kb.centralnicreseller.com/
+
+CENTRALNIC_USERNAME = os.environ.get("CENTRALNIC_USERNAME", "")
+CENTRALNIC_PASSWORD = os.environ.get("CENTRALNIC_PASSWORD", "")

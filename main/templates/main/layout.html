@@ -10,7 +10,7 @@
 <body>
     <nav>
         <h1>
-            <a href="">tofunames.com</a>
+            <a href="{% url 'index' %}">tofunames.com</a>
         </h1>
         <div></div>
         <div id="controls">
@@ -22,6 +22,14 @@
             </div>
         </div>
     </nav>
+
+    <div style="margin: 8px;">
+        [ <a href="{% url 'index' %}">Domains</a>
+        | <a href="{% url 'domain_create' %}">Add Domain</a>
+        | <a href="{% url 'contact_list' %}">Contacts</a>
+        | <a href="{% url 'contact_create' %}">Add Contact</a>
+        ]
+    </div>
 
     {% block content %}
     {% endblock %}

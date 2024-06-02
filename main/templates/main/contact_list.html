@@ -1,0 +1,19 @@
+{% extends 'main/layout.html' %}
+
+{% block content %}
+<main>
+    {% for contact in contact_list %}
+    <div class="domain">
+        <div>
+            {{ contact.api_id|default:"(none)" }}
+        </div>
+        <div>
+            {{ contact.first_name }}
+        </div>
+        <div>
+            {{ contact.last_name }}
+        </div>
+    </div>
+    {% endfor %}
+</main>
+{% endblock %}

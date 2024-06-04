@@ -2,7 +2,7 @@ import httpx
 from django.conf import settings
 
 
-BASE_URL = "https://api.rrpproxy.net/api/call.cgi"
+BASE_URL = settings.CENTRALNIC_ENDPOINT
 USERNAME = settings.CENTRALNIC_USERNAME
 PASSWORD = settings.CENTRALNIC_PASSWORD
 

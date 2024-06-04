@@ -1,3 +1,18 @@
 export DEBUG=1
+export LOCALENV=1
+
+# CentralNic Production
+# export CENTRALNIC_ENDPOINT=
+# export CENTRALNIC_USERNAME=
+# export CENTRALNIC_PASSWORD=
+
+# CentralNic Testing
+export CENTRALNIC_ENDPOINT=
 export CENTRALNIC_USERNAME=
 export CENTRALNIC_PASSWORD=
+
+# Stripe Production
+# export STRIPE_API_KEY=sk_
+
+# Stripe Testing
+export STRIPE_API_KEY=

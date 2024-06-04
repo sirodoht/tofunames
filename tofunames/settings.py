@@ -18,6 +18,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get("SECRET_KEY", "django-insecure-g@u7bxl#5_f75kzj872*-f+4")
 
 DEBUG = True if os.environ.get("DEBUG") == "1" else False
+LOCALENV = True if os.environ.get("LOCALENV") == "1" else False
 
 ALLOWED_HOSTS = [
     "127.0.0.1",
@@ -25,6 +26,9 @@ ALLOWED_HOSTS = [
     "tofunames.com",
 ]
 
+CANONICAL_URL = "https://tofunames.com"
+if LOCALENV:
+    CANONICAL_URL = "http://localhost:8000"
 
 # Application definition
 
@@ -128,5 +132,12 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # CentralNic
 # https://kb.centralnicreseller.com/
 
-CENTRALNIC_USERNAME = os.environ.get("CENTRALNIC_USERNAME", "")
-CENTRALNIC_PASSWORD = os.environ.get("CENTRALNIC_PASSWORD", "")
+CENTRALNIC_ENDPOINT = os.environ.get("CENTRALNIC_ENDPOINT")
+CENTRALNIC_USERNAME = os.environ.get("CENTRALNIC_USERNAME")
+CENTRALNIC_PASSWORD = os.environ.get("CENTRALNIC_PASSWORD")
+
+
+# Stripe
+# https://docs.stripe.com/
+
+STRIPE_API_KEY = os.environ.get("STRIPE_API_KEY")

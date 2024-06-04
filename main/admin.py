@@ -59,3 +59,13 @@ class DomainAdmin(admin.ModelAdmin):
         "created_at",
     )
     ordering = ["-id"]
+
+
+@admin.register(models.Checkout)
+class CheckoutAdmin(admin.ModelAdmin):
+    list_display = (
+        "id",
+        "domain",
+        "created_at",
+    )
+    ordering = ["-id"]

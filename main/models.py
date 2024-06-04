@@ -56,6 +56,16 @@ class Domain(models.Model):
     nameserver2 = models.CharField(max_length=253, blank=True, null=True, default="")
     nameserver3 = models.CharField(max_length=253, blank=True, null=True, default="")
     api_log = models.CharField(max_length=1000, blank=True, null=True)
+    pending = models.BooleanField(default=True)
 
     def __str__(self):
         return f"{self.id}: {self.domain_name}"
+
+
+class Checkout(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    domain = models.ForeignKey(Domain, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.id}: Checkout for {self.domain.domain_name}"

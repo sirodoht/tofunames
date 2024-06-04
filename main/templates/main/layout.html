@@ -23,13 +23,21 @@
         </div>
     </nav>
 
-    <div style="margin: 8px;">
+    <div style="padding: 8px; border: 1px solid black;">
         [ <a href="{% url 'index' %}">Domains</a>
-        | <a href="{% url 'domain_create' %}">Add Domain</a>
+        | <a href="{% url 'domain_create' %}">Register Domain</a>
         | <a href="{% url 'contact_list' %}">Contacts</a>
         | <a href="{% url 'contact_create' %}">Add Contact</a>
         ]
     </div>
+
+    {% if messages %}
+    <aside>
+        {% for message in messages %}
+        <div {% if message.tags %}class="alert-{{ message.tags }}"{% endif %}>{{ message|safe }}</div>
+        {% endfor %}
+    </aside>
+    {% endif %}
 
     {% block content %}
     {% endblock %}

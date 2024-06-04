@@ -5,6 +5,15 @@ body { font-family: monospace; line-height: 1.3; }
 /* general */
 a { color: black; }
 
+/* forms */
+form { margin: 0 16px; }
+label { display: block; margin-bottom: 2px; }
+aside { padding: 8px 16px; }
+aside:has(.alert-error) { border: 8px solid #ff00005e; }
+aside:has(.alert-success) { border: 8px solid #0080005e; }
+.alert-error { color: red; }
+.alert-success { color: green; }
+
 /* nav */
 nav { display: grid; gap: 0; grid-template-columns: auto 1fr auto; outline: 1px solid black; }
 nav h1 { margin: 0; text-align: center; outline: 1px solid black; }
@@ -22,14 +31,14 @@ nav a:hover { text-decoration: underline; }
 
 /* main */
 main { display: grid; grid-template-columns: auto auto auto; }
-.domain {
+.cell {
     grid-column: 1 / 4;
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: repeat(3, 1fr);
     border-bottom: 1px solid black;
 }
-.domain div:not(:last-child) { border-right: 1px solid black; }
-.domain div {
+.cell div:not(:last-child) { border-right: 1px solid black; }
+.cell div {
     border-right: 1px solid black;
     padding: 8px;
 }

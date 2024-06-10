@@ -44,6 +44,7 @@ class ContactAdmin(admin.ModelAdmin):
         "id",
         "first_name",
         "last_name",
+        "owner",
         "api_id",
         "created_at",
     )
@@ -56,6 +57,7 @@ class DomainAdmin(admin.ModelAdmin):
         "id",
         "domain_name",
         "contact",
+        "owner",
         "created_at",
     )
     ordering = ["-id"]

@@ -31,6 +31,7 @@ class User(AbstractUser):
 class Contact(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    owner = models.ForeignKey(User, on_delete=models.PROTECT)
     first_name = models.CharField(max_length=150)
     last_name = models.CharField(max_length=150)
     street = models.CharField(max_length=150)
@@ -49,6 +50,7 @@ class Contact(models.Model):
 class Domain(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    owner = models.ForeignKey(User, on_delete=models.PROTECT)
     domain_name = models.CharField(max_length=63)
     contact = models.ForeignKey(Contact, on_delete=models.PROTECT)
     nameserver0 = models.CharField(max_length=253, blank=True, null=True, default="")

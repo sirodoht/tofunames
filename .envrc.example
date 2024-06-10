@@ -18,6 +18,8 @@ export CENTRALNIC_PASSWORD=
 
 # Stripe Production
 # export STRIPE_API_KEY=
+# export STRIPE_PRICE=
 
 # Stripe Testing
 export STRIPE_API_KEY=
+export STRIPE_PRICE=

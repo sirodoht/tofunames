@@ -162,3 +162,4 @@ CENTRALNIC_PASSWORD = os.environ.get("CENTRALNIC_PASSWORD")
 # https://docs.stripe.com/
 
 STRIPE_API_KEY = os.environ.get("STRIPE_API_KEY")
+STRIPE_PRICE = os.environ.get("STRIPE_PRICE")

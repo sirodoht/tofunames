@@ -59,14 +59,17 @@ def create_contact(contact):
 
     # save API id on contact object separately
     api_response = api_response.split("\n")
-    contact.api_id = api_response[6].split(" ")[2]
-    contact.save()
 
     # check for errors
     if api_response[0] != "[RESPONSE]":
         raise Exception("centralnic API for contact creation unexpected error")
     if api_response[1] != "code = 200":
-        raise Exception(f"centralnic API for contact creation error: {api_response[1]}")
+        raise Exception(
+            f"centralnic API for contact creation error: {api_response[1]} {api_response[2]}"
+        )
+
+    contact.api_id = api_response[6].split(" ")[2]
+    contact.save()
 
 
 def register_domain(domain):
@@ -96,14 +99,15 @@ def register_domain(domain):
 
     # save API id on domain object separately
     api_response = api_response.split("\n")
-    domain.api_id = api_response[6].split(" ")[2]
-    domain.save()
 
     # check for errors
     if api_response[0] != "[RESPONSE]":
         raise Exception("centralnic API for domain creation unexpected error")
     if api_response[1] != "code = 200":
         raise Exception(f"centralnic API for domain creation error: {api_response[1]}")
+
+    domain.api_id = api_response[6].split(" ")[2]
+    domain.save()
 
 
 def get_contact_list():

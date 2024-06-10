@@ -15,6 +15,10 @@
             <a href="">manage</a>
         </div>
     </div>
+    {% empty %}
+    <div style="margin: 8px;">
+        <em>(no domains)</em>
+    </div>
     {% endfor %}
 </main>
 {% endblock %}

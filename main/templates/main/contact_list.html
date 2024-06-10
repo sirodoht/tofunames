@@ -14,6 +14,10 @@
             {{ contact.last_name }}
         </div>
     </div>
+    {% empty %}
+    <div style="margin: 8px;">
+        <em>(no contacts)</em>
+    </div>
     {% endfor %}
 </main>
 {% endblock %}

@@ -1,8 +1,9 @@
 from main import views
 
-from django.urls import path
+from django.urls import path, include
 
 
+# General functionality
 urlpatterns = [
     path("", views.index, name="index"),
     # contacts
@@ -10,7 +11,11 @@ urlpatterns = [
     path("contacts/", views.ContactList.as_view(), name="contact_list"),
     # domains
     path("add-domain/", views.DomainCreate.as_view(), name="domain_create"),
+    path("domains/", views.DomainList.as_view(), name="domain_list"),
     # payments
     path("checkout/success/", views.checkout_success, name="checkout_success"),
     path("checkout/failure/", views.checkout_failure, name="checkout_failure"),
+    # user accounts
+    path("accounts/", include("django.contrib.auth.urls")),
+    path("accounts/create/", views.UserCreate.as_view(), name="user_create"),
 ]

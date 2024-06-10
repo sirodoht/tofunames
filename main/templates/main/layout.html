@@ -14,17 +14,31 @@
         </h1>
         <div></div>
         <div id="controls">
+            {% if request.user.is_authenticated %}
             <div class="controls-item" style="border-right: 1px solid black;">
-                <a href="">sirodoht</a>
+                <a href="">{{ request.user.username }}</a>
             </div>
             <div class="controls-item">
-                <a href="">logout</a>
+                <div style="display: flex; align-items: center; padding: 20px;">
+                    <form method="post" action="{% url 'logout' %}" class="form-inline">
+                        {% csrf_token %}
+                        <input type="submit" value="logout">
+                    </form>
+                </div>
             </div>
+            {% else %}
+            <div class="controls-item">
+                <a href="{% url 'login' %}">login</a>
+            </div>
+            <div class="controls-item" style="border-left: 1px solid black;">
+                <a href="{% url 'user_create' %}">sign up</a>
+            </div>
+            {% endif %}
         </div>
     </nav>
 
     <div style="padding: 8px; border: 1px solid black;">
-        [ <a href="{% url 'index' %}">Domains</a>
+        [ <a href="{% url 'domain_list' %}">Domains</a>
         | <a href="{% url 'domain_create' %}">Register Domain</a>
         | <a href="{% url 'contact_list' %}">Contacts</a>
         | <a href="{% url 'contact_create' %}">Add Contact</a>

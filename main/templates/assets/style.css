@@ -6,8 +6,15 @@ body { font-family: monospace; line-height: 1.3; }
 a { color: black; }
 
 /* forms */
-form { margin: 0 16px; }
 label { display: block; margin-bottom: 2px; }
+
+input { font-family: monospace; }
+input[type="submit"] { cursor: pointer; }
+
+.form-inline { display: inline-block; }
+.form-inline input[type="submit"] { border: none; background: unset; padding: 0; }
+.form-inline input[type="submit"]:hover { text-decoration: underline; }
+
 aside { padding: 8px 16px; }
 aside:has(.alert-error) { border: 8px solid #ff00005e; }
 aside:has(.alert-success) { border: 8px solid #0080005e; }

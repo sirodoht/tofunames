@@ -1,0 +1,20 @@
+{% extends 'main/layout.html' %}
+
+{% block content %}
+<main>
+    {% for domain in domain_list %}
+    <div class="cell">
+        <div>
+            {{ domain.domain_name }}
+            <small>
+                <a href="">(visit ↗)</a>
+            </small>
+        </div>
+        <div>{{ domain.created_at }}</div>
+        <div>
+            <a href="">manage</a>
+        </div>
+    </div>
+    {% endfor %}
+</main>
+{% endblock %}

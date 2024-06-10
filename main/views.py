@@ -1,4 +1,6 @@
 import stripe
+from django.contrib.auth.views import LogoutView as DjLogoutView
+from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.conf import settings
@@ -9,18 +11,20 @@ from django.views.generic.edit import CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 
-from main import models, centralnic
+from main import models, centralnic, forms
 
 
-@login_required
 def index(request):
-    return render(
-        request,
-        "main/index.html",
-        {
-            "domain_list": models.Domain.objects.filter(pending=False),
-        },
-    )
+    if request.user.is_authenticated:
+        return redirect("domain_list")
+    return render(request, "main/index.html")
+
+
+class DomainList(LoginRequiredMixin, ListView):
+    model = models.Domain
+
+    def get_queryset(self):
+        return models.Domain.objects.filter(pending=False)
 
 
 class ContactCreate(LoginRequiredMixin, CreateView):
@@ -115,3 +119,23 @@ def checkout_failure(request):
     # respond with message
     messages.error(request, "payment failed")
     return redirect("domain_create")
+
+
+# User accounts
+class UserCreate(CreateView):
+    form_class = forms.UserCreationForm
+    template_name = "main/user_create.html"
+    success_message = "welcome to tofunames.com"
+
+    def get_success_url(self):
+        return reverse_lazy("index")
+
+    def form_valid(self, form):
+        self.object = form.save()
+        user = authenticate(
+            username=form.cleaned_data.get("username"),
+            password=form.cleaned_data.get("password1"),
+        )
+        login(self.request, user)
+        messages.success(self.request, self.success_message)
+        return HttpResponseRedirect(self.get_success_url())

@@ -73,6 +73,8 @@ TEMPLATES = [
 WSGI_APPLICATION = "tofunames.wsgi.application"
 
 AUTH_USER_MODEL = "main.User"
+LOGIN_REDIRECT_URL = "index"
+LOGOUT_REDIRECT_URL = "index"
 
 
 # Database

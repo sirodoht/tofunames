@@ -30,6 +30,9 @@ CANONICAL_URL = "https://tofunames.com"
 if LOCALENV:
     CANONICAL_URL = "http://localhost:8000"
 
+ADMINS = [("Theodore Keloglou", "zf@sirodoht.com")]
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -129,6 +132,22 @@ STATIC_ROOT = BASE_DIR / "static"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+# Email
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+if LOCALENV:
+    EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+EMAIL_USE_TLS = True
+EMAIL_HOST = "smtp.postmarkapp.com"
+EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
+EMAIL_PORT = 587
+DEFAULT_FROM_EMAIL = "tofunames <admin@tofunames.com>"
+EMAIL_FROM_HOST = "tofunames.com"
+SERVER_EMAIL = "Tofu Server <server@tofunames.com>"
+EMAIL_SUBJECT_PREFIX = "[tofunames] "
 
 
 # CentralNic

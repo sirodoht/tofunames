@@ -7,12 +7,19 @@ export ANSIBLE_USER=
 
 # vars.yaml
 
-# Show exceptions and tracebacks on errors
+# Global
 export DEBUG=1
+export LOCALENV=1
+export SECRET_KEY=
 
-# Used by Django to encrypt session login cookies
-export SECRET_KEY=xxx
+# Mail
+export EMAIL_HOST_USER=
+export EMAIL_HOST_PASSWORD=
 
-# CentralNic credentials
+# CentralNic
+export CENTRALNIC_ENDPOINT=
 export CENTRALNIC_USERNAME=
 export CENTRALNIC_PASSWORD=
+
+# Stripe
+export STRIPE_API_KEY=

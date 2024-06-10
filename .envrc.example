@@ -1,5 +1,10 @@
+# Global
 export DEBUG=1
 export LOCALENV=1
+
+# Mail
+export EMAIL_HOST_USER=
+export EMAIL_HOST_PASSWORD=
 
 # CentralNic Production
 # export CENTRALNIC_ENDPOINT=
@@ -12,7 +17,7 @@ export CENTRALNIC_USERNAME=
 export CENTRALNIC_PASSWORD=
 
 # Stripe Production
-# export STRIPE_API_KEY=sk_
+# export STRIPE_API_KEY=
 
 # Stripe Testing
 export STRIPE_API_KEY=

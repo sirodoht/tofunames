@@ -16,7 +16,7 @@
         <div id="controls">
             {% if request.user.is_authenticated %}
             <div class="controls-item" style="border-right: 1px solid black;">
-                <a href="">{{ request.user.username }}</a>
+                <a href="{% url 'password_change' %}">User: {{ request.user.username }}</a>
             </div>
             <div class="controls-item">
                 <div style="display: flex; align-items: center; padding: 20px;">

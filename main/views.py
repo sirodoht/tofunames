@@ -81,7 +81,7 @@ class DomainCreate(LoginRequiredMixin, CreateView):
     model = models.Domain
     fields = [
         "domain_name",
-        "contact",  # TODO: figure out how not to leak all contacts
+        "contact",
         "nameserver0",
         "nameserver1",
         "nameserver2",
@@ -89,6 +89,13 @@ class DomainCreate(LoginRequiredMixin, CreateView):
     ]
     template_name = "main/domain_create.html"
     success_url = reverse_lazy("checkout")
+
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        form.fields["contact"].queryset = models.Contact.objects.filter(
+            owner=self.request.user
+        )
+        return form
 
     def form_valid(self, form):
         # save domain instance

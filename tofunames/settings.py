@@ -19,6 +19,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY", "django-insecure-g@u7bxl#5_f75kzj872*-
 
 DEBUG = True if os.environ.get("DEBUG") == "1" else False
 LOCALENV = True if os.environ.get("LOCALENV") == "1" else False
+UPSTREAM_ENABLED = False
 
 ALLOWED_HOSTS = [
     "127.0.0.1",

@@ -37,7 +37,21 @@ nav a:hover { text-decoration: underline; }
 .controls-item { display: flex; }
 .controls-item a { padding: 20px; }
 
-/* main */
+/* domains */
+#domains { display: grid; grid-template-columns: repeat(3, auto); }
+.domaincell {
+    grid-column: 1 / 4;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-bottom: 1px solid black;
+}
+.domaincell div:not(:last-child) { border-right: 1px solid black; }
+.domaincell div {
+    border-right: 1px solid black;
+    padding: 8px;
+}
+
+/* contacts */
 main { display: grid; grid-template-columns: auto auto auto; }
 .cell {
     grid-column: 1 / 4;

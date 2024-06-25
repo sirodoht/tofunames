@@ -11,6 +11,7 @@ urlpatterns = [
     # domains
     path("add-domain/", views.DomainCreate.as_view(), name="domain_create"),
     path("domains/", views.DomainList.as_view(), name="domain_list"),
+    path("domains/<int:pk>/edit/", views.DomainUpdate.as_view(), name="domain_update"),
     # payments
     path("checkout/success/", views.checkout_success, name="checkout_success"),
     path("checkout/failure/", views.checkout_failure, name="checkout_failure"),

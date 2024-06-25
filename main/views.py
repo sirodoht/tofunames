@@ -6,7 +6,7 @@ from django.conf import settings
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from main import models, centralnic, forms
@@ -66,7 +66,8 @@ class ContactCreate(LoginRequiredMixin, CreateView):
         self.object = form.save(commit=False)
         self.object.owner = self.request.user
         self.object.save()
-        centralnic.create_contact(self.object)
+        if settings.UPSTREAM_ENABLED:
+            centralnic.create_contact(self.object)
         return super().form_valid(form)
 
 
@@ -126,13 +127,34 @@ class DomainCreate(LoginRequiredMixin, CreateView):
         return response
 
 
+class DomainUpdate(LoginRequiredMixin, UpdateView):
+    model = models.Domain
+    fields = [
+        "contact",
+        "nameserver0",
+        "nameserver1",
+        "nameserver2",
+        "nameserver3",
+    ]
+    template_name = "main/domain_edit.html"
+    success_url = reverse_lazy("index")
+
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        form.fields["contact"].queryset = models.Contact.objects.filter(
+            owner=self.request.user
+        )
+        return form
+
+
 # Payments - Stripe
 def checkout_success(request):
     domain = models.Domain.objects.get(pending=True, owner=request.user)
     checkout = models.Checkout.objects.get(domain=domain)
 
     # register domain
-    centralnic.register_domain(domain)
+    if settings.UPSTREAM_ENABLED:
+        centralnic.register_domain(domain)
 
     # complete registration on success
     checkout.delete()

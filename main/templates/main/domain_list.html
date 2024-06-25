@@ -1,18 +1,21 @@
 {% extends 'main/layout.html' %}
 
 {% block content %}
-<main>
+<main id="domains">
     {% for domain in domain_list %}
-    <div class="cell">
+    <div class="domaincell">
         <div>
             {{ domain.domain_name }}
             <small>
                 <a href="">(visit ↗)</a>
             </small>
         </div>
-        <div>{{ domain.created_at }}</div>
+        <div>Expires: {{ domain.created_at|date }}</div>
         <div>
-            <a href="">manage</a>
+            [
+            <a href="{% url 'domain_update' domain.id %}">manage</a>
+            | <a href="">renew now</a>
+            ]
         </div>
     </div>
     {% empty %}

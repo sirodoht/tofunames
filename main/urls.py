@@ -3,7 +3,6 @@ from main import views
 from django.urls import path, include
 
 
-# General functionality
 urlpatterns = [
     path("", views.index, name="index"),
     # contacts

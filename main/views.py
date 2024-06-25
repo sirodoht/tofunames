@@ -39,43 +39,12 @@ class UserCreate(CreateView):
         return HttpResponseRedirect(self.get_success_url())
 
 
-# Core: domains and contacts
+# Domains
 class DomainList(LoginRequiredMixin, ListView):
     model = models.Domain
 
     def get_queryset(self):
         return models.Domain.objects.filter(owner=self.request.user, pending=False)
-
-
-class ContactCreate(LoginRequiredMixin, CreateView):
-    model = models.Contact
-    fields = [
-        "first_name",
-        "last_name",
-        "street",
-        "city",
-        "postal",
-        "country",
-        "phone",
-        "email",
-    ]
-    template_name = "main/contact_create.html"
-    success_url = reverse_lazy("contact_list")
-
-    def form_valid(self, form):
-        self.object = form.save(commit=False)
-        self.object.owner = self.request.user
-        self.object.save()
-        if settings.UPSTREAM_ENABLED:
-            centralnic.create_contact(self.object)
-        return super().form_valid(form)
-
-
-class ContactList(LoginRequiredMixin, ListView):
-    model = models.Contact
-
-    def get_queryset(self):
-        return models.Contact.objects.filter(owner=self.request.user)
 
 
 class DomainCreate(LoginRequiredMixin, CreateView):
@@ -136,8 +105,8 @@ class DomainUpdate(LoginRequiredMixin, UpdateView):
         "nameserver2",
         "nameserver3",
     ]
-    template_name = "main/domain_edit.html"
-    success_url = reverse_lazy("index")
+    template_name = "main/domain_update.html"
+    success_url = reverse_lazy("domain_list")
 
     def get_form(self, form_class=None):
         form = super().get_form(form_class)
@@ -145,6 +114,54 @@ class DomainUpdate(LoginRequiredMixin, UpdateView):
             owner=self.request.user
         )
         return form
+
+
+# Contacts
+class ContactList(LoginRequiredMixin, ListView):
+    model = models.Contact
+
+    def get_queryset(self):
+        return models.Contact.objects.filter(owner=self.request.user)
+
+
+class ContactCreate(LoginRequiredMixin, CreateView):
+    model = models.Contact
+    fields = [
+        "first_name",
+        "last_name",
+        "street",
+        "city",
+        "postal",
+        "country",
+        "phone",
+        "email",
+    ]
+    template_name = "main/contact_create.html"
+    success_url = reverse_lazy("contact_list")
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.owner = self.request.user
+        self.object.save()
+        if settings.UPSTREAM_ENABLED:
+            centralnic.create_contact(self.object)
+        return super().form_valid(form)
+
+
+class ContactUpdate(LoginRequiredMixin, UpdateView):
+    model = models.Contact
+    fields = [
+        "first_name",
+        "last_name",
+        "street",
+        "city",
+        "postal",
+        "country",
+        "phone",
+        "email",
+    ]
+    template_name = "main/contact_update.html"
+    success_url = reverse_lazy("contact_list")
 
 
 # Payments - Stripe

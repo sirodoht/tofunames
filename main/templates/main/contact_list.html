@@ -1,9 +1,9 @@
 {% extends 'main/layout.html' %}
 
 {% block content %}
-<main>
+<main id="contacts">
     {% for contact in contact_list %}
-    <div class="cell">
+    <div class="contactcell">
         <div>
             {{ contact.api_id|default:"(none)" }}
         </div>
@@ -12,6 +12,11 @@
         </div>
         <div>
             {{ contact.last_name }}
+        </div>
+        <div>
+            [
+            <a href="{% url 'contact_update' contact.id %}">edit</a>
+            ]
         </div>
     </div>
     {% empty %}

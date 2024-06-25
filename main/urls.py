@@ -8,6 +8,9 @@ urlpatterns = [
     # contacts
     path("add-contact/", views.ContactCreate.as_view(), name="contact_create"),
     path("contacts/", views.ContactList.as_view(), name="contact_list"),
+    path(
+        "contacts/<int:pk>/edit/", views.ContactUpdate.as_view(), name="contact_update"
+    ),
     # domains
     path("add-domain/", views.DomainCreate.as_view(), name="domain_create"),
     path("domains/", views.DomainList.as_view(), name="domain_list"),

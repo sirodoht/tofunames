@@ -52,15 +52,15 @@ nav a:hover { text-decoration: underline; }
 }
 
 /* contacts */
-main { display: grid; grid-template-columns: auto auto auto; }
-.cell {
-    grid-column: 1 / 4;
+#contacts { display: grid; grid-template-columns: repeat(4, auto); }
+.contactcell {
+    grid-column: 1 / 5;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     border-bottom: 1px solid black;
 }
-.cell div:not(:last-child) { border-right: 1px solid black; }
-.cell div {
+.contactcell div:not(:last-child) { border-right: 1px solid black; }
+.contactcell div {
     border-right: 1px solid black;
     padding: 8px;
 }
